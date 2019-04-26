@@ -1,6 +1,7 @@
 // PACKAGE IMPORTS
 
     import java.util.*;
+    import java.lang.*;
 
 // item CLASS
 
@@ -12,17 +13,17 @@
             private String itemName;
             private String itemType;
             private int itemQuantity;
-            private long itemSerial;
+            private String itemSerial;
             Scanner dataInput = new Scanner(System.in);
 
         // CONSTRUCTOR METHOD
 
-            public void item(String name, String type, int quantity, long serial)
+            public item(String name, String type, int quantity, String serial)
             {
-                name = itemName;
-                type = itemType;
-                quantity = itemQuantity;
-                serial = itemSerial;
+                itemName = name;
+                itemType = type;
+                itemQuantity = quantity;
+                itemSerial = serial;
             }
 
         // OBJECT MANIPULATION
@@ -49,7 +50,7 @@
             public void increaseQuantity()
             {
                 this.itemQuantity++;
-                System.out.println("\nSuccessfully increased quantity of " + this.itemName + " by 1\nNEW QUANTITY : " + this.itemQuantity));
+                System.out.println("\nSuccessfully increased quantity of " + this.itemName + " by 1\nNEW QUANTITY : " + this.itemQuantity);
             }
 
             // this method can be used to decrease the quantity of an existing item by 1
@@ -63,16 +64,26 @@
             public void editSerial()
             {
                 System.out.println("PLEASE INPUT A NEW SERIAL NUMBER FOR " + this.itemName + " AND PRESS ENTER TO FINALIZE THE CHANGE\n" );
-                Long oldSerial = this.itemSerial;0
-                String newSerial = dataInput.nextLine();
-                this.itemSerial = Long.longParse(newSerial);
-                System.out.println("\nSuccessfully changed serial of " + this.itemName " from" + oldSerial + " to" this.itemSerial);
+                String oldSerial = this.itemSerial;
+                this.itemSerial = dataInput.nextLine();
+                System.out.println("\nSuccessfully changed serial of " + this.itemName + " from " + oldSerial + " to " + this.itemSerial);
             }
 
             // this method sends all available information about an item to a string
-            public void toString()
+            public void printItem()
             {
-                System.out.println("\nITEM NAME : " + this.itemName + "" + + "" + + "" + + ""
+                System.out.println("\nITEM NAME : " + this.itemName + "\nITEM TYPE : " + this.itemType + "\nQUANTITY : " + this.itemQuantity + "\nITEM SERIAL : " + this.itemSerial);
             }
 
+        // main method
+        public static void main(String[] args)
+        {
+            item test = new item("Big Gear","Gear", 24, "345678953");
+            System.out.println(test.itemQuantity);
+            test.printItem();
+            test.increaseQuantity();
+            System.out.println(test.itemQuantity);
+            test.editSerial();
+            test.editName();
+        }
     }
